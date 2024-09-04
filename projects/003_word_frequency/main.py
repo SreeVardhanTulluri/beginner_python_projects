@@ -17,6 +17,12 @@ def get_frequency(text: str) -> list[tuple[str, int]]:
     # 6. Return the most common words as a tuple
     return word_counts.most_common()
 
+def get_text(path: str) -> str :
+    with open(path) as f:
+      text = ''
+      for line in f.readlines():
+          text +=line
+    return text  
 
 # 7. Create a main entry point
 def main() -> None:
