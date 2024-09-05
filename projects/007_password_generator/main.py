@@ -28,14 +28,36 @@ class Password:
             password.append(secrets.choice(self.base_characters))
 
         return ''.join(password)
+    
+    def check_strength(self,password: str) -> None:
+        length_check: bool = len(password) < 16
+        uppercase_check: bool = True not in [char in string.ascii_uppercase for char in password]
+        symbol_check: bool = True not in [char in string.punctuation for char in password]
+        output = ''
+        if True in (length_check,uppercase_check,symbol_check):
+            output += 'Weak Password ->'
+            if len(password) < 16:
+                output +=' Not long enough\t'
+            if True not in [char in string.ascii_uppercase for char in password]:
+                output +=' No Uppercase letters\t'
+            if True not in [char in string.punctuation for char in password]:
+                output +=' No Symbols'
+        else:
+            output ='Strong Password'
+
+        return output
+
+        
+
 
 
 # 7. Create the main entry point
 def main() -> None:
-    password: Password = Password(length=20, uppercase=True, symbols=True)
+    password: Password = Password(length=16, uppercase=True, symbols=True)
     for i in range(10):
         generated: str = password.generate()
-        print(f'{generated} ({len(generated)} chars)')
+        print(f'{generated} --- {password.check_strength(generated)}')
+        
 
 
 # 8. Run the script
