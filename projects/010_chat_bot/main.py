@@ -43,6 +43,10 @@ class ChatBot:
             # 10. In case the user asks for the time
             if response == 'GET_TIME':
                 response = f'The time is: {datetime.now():%H:%M}'
+            elif response =='KILL_PROCESS':
+                print( f'Process killed - 0')
+                break
+
 
             print(f'{self.name}: {response} (Similarity: {similarity:.2%})')
 
@@ -53,7 +57,8 @@ def main() -> None:
         'hello': 'Hello! How are you today?',
         'how are you': 'Great, thanks! What about you?',
         'what time is it': 'GET_TIME',
-        'bye': 'Goodbye! Have a great day!'
+        'bye': 'Goodbye! Have a great day!',
+        'exit': 'KILL_PROCESS'
     }
 
     # 12. Create a ChatBot instance and start chatting

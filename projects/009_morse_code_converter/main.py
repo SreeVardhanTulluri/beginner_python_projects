@@ -7,7 +7,8 @@ morse_code_dict: dict[str, str] = {
     'Y': '-.--', 'Z': '--..',
     '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....',
     '6': '-....', '7': '--...', '8': '---..', '9': '----.', '0': '-----',
-    ' ': '/'
+    ' ': '/', 'ERR': '........', '&' : '.-...' , '@': '.--.-.', '\'': '.----.',
+    
 }
 
 
@@ -15,15 +16,20 @@ morse_code_dict: dict[str, str] = {
 def convert_to_morse(text: str) -> str:
     return ' '.join(morse_code_dict.get(char.upper(), '') for char in text)
 
+def decode_morse(code: str) ->str:
+    return ''.join([list(morse_code_dict.keys())[list(morse_code_dict.values()).index(pattern)]for pattern in code.split()])
+
 
 # 3. Create a main entry point
 def main() -> None:
     # 4. Get that sexy user input
-    user_input: str = input('Enter text: ')
+    # user_input: str = input('Enter text: ')
+    user_input = 'hello'
     output: str = convert_to_morse(user_input)
 
     # 5. Display the output in the console
     print(output)
+    print(decode_morse(output))
 
 
 # 6. Run the script
